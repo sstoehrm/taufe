@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baptism</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Quicksand:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --c-peach: #ffb89a;
+      --c-coral: #ff8fa3;
+      --c-lavender: #b8a4e3;
+      --c-sky: #9dd0ff;
+      --c-mint: #9be8c8;
+      --c-butter: #ffe08a;
+      --ink: #3d2459;
+      --ink-soft: #6a4f8c;
+      --card: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: "Quicksand", system-ui, sans-serif;
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      padding: 2rem 1.5rem;
+      position: relative;
+      background: #fff8f0;
+      background-image:
+        radial-gradient(at 12% 18%, var(--c-peach) 0px, transparent 45%),
+        radial-gradient(at 88% 14%, var(--c-lavender) 0px, transparent 45%),
+        radial-gradient(at 78% 88%, var(--c-mint) 0px, transparent 45%),
+        radial-gradient(at 18% 82%, var(--c-sky) 0px, transparent 45%),
+        radial-gradient(at 50% 50%, var(--c-butter) 0px, transparent 30%);
+    }
+
+    /* floating confetti dots */
+    .confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .dot {
+      position: absolute;
+      border-radius: 50%;
+      animation: float 7s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    .dot.star {
+      border-radius: 0;
+      width: auto !important;
+      height: auto !important;
+      background: transparent !important;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(8deg); }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.75rem;
+      max-width: 360px;
+      width: 100%;
+      animation: rise 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .frame {
+      padding: 14px 14px 56px;
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 30px 50px -24px rgba(80, 40, 100, 0.28),
+        0 8px 16px -8px rgba(80, 40, 100, 0.15);
+      transform: rotate(-1.5deg);
+      transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .frame:hover {
+      transform: rotate(0deg) scale(1.02);
+    }
+
+    .photo {
+      width: 260px;
+      aspect-ratio: 4 / 5;
+      border-radius: 10px;
+      background:
+        linear-gradient(135deg,
+          var(--c-peach) 0%,
+          var(--c-coral) 35%,
+          var(--c-lavender) 70%,
+          var(--c-sky) 100%);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.5) 0%, transparent 50%);
+    }
+
+    .photo span {
+      font-family: "Quicksand", sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+
+    .caption {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .eyebrow {
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+    }
+
+    .name {
+      font-family: "Fraunces", serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      background: linear-gradient(120deg, var(--c-coral) 0%, var(--c-lavender) 60%, var(--c-sky) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      padding: 0.1em 0;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    .meta::before,
+    .meta::after {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.5;
+    }
+
+    @media (max-height: 680px) {
+      .photo { width: 200px; }
+      .name { font-size: 2.1rem; }
+      main { gap: 1.25rem; }
+      .frame { padding: 10px 10px 40px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="confetti" aria-hidden="true">
+    <span class="dot" style="top: 8%; left: 14%; width: 14px; height: 14px; background: var(--c-coral); animation-delay: 0s;"></span>
+    <span class="dot" style="top: 22%; left: 82%; width: 10px; height: 10px; background: var(--c-mint); animation-delay: 1.2s;"></span>
+    <span class="dot" style="top: 70%; left: 8%; width: 18px; height: 18px; background: var(--c-butter); animation-delay: 2.4s;"></span>
+    <span class="dot" style="top: 80%; left: 88%; width: 12px; height: 12px; background: var(--c-lavender); animation-delay: 0.6s;"></span>
+    <span class="dot" style="top: 45%; left: 4%; width: 8px; height: 8px; background: var(--c-sky); animation-delay: 1.8s;"></span>
+    <span class="dot" style="top: 12%; left: 50%; width: 8px; height: 8px; background: var(--c-coral); animation-delay: 3s;"></span>
+    <span class="dot star" style="top: 30%; left: 90%; color: var(--c-butter); animation-delay: 0.4s;">✦</span>
+    <span class="dot star" style="top: 60%; left: 92%; color: var(--c-coral); animation-delay: 2s;">✦</span>
+    <span class="dot star" style="top: 85%; left: 20%; color: var(--c-lavender); animation-delay: 1s;">✦</span>
+    <span class="dot star" style="top: 18%; left: 6%; color: var(--c-mint); animation-delay: 2.6s;">✦</span>
+  </div>
+
+  <main>
+    <div class="frame">
+      <div class="photo">
+        <span>Photo</span>
+      </div>
+    </div>
+
+    <div class="caption">
+      <p class="eyebrow">Today we celebrate the baptism of</p>
+      <h1 class="name">[Name]</h1>
+      <p class="meta">15 May 2026</p>
+    </div>
+  </main>
+</body>
+</html>
